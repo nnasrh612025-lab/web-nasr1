@@ -1,0 +1,80 @@
+
+xml
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  
+  <url>
+    <loc>https://example.com/index.html</loc>
+    <priority>1.0</priority>
+  </url>
+
+  <url>
+    <loc>https://example.com/page1.html</loc>
+  </url>
+
+  <url>
+    <loc>https://example.com/page2.html</loc>
+  </url>
+
+  <url>
+    <loc>https://example.com/page3.html</loc>
+  </url>
+
+  <url>
+    <loc>https://example.com/about.html</loc>
+  </url>
+
+  <url>
+    <loc>https://example.com/contact.html</loc>
+  </url>
+
+  <url>
+    <loc>https://example.com/privacy.html</loc>
+  </url>
+
+  <url>
+    <loc>https://example.com/register.html</loc>
+  </url>
+
+</urlset>
+xml
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  
+  <url>
+    <loc>https://example.com/index.html</loc>
+    <priority>1.0</priority>
+  </url>
+
+  <url>
+    <loc>https://example.com/page1.html</loc>
+  </url>
+
+  <url>
+    <loc>https://example.com/page2.html</loc>
+  </url>
+
+  <url>
+    <loc>https://example.com/page3.html</loc>
+  </url>
+
+  <url>
+    <loc>https://example.com/about.html</loc>
+  </url>
+
+  <url>
+    <loc>https://example.com/contact.html</loc>
+  </url>
+
+  <url>
+    <loc>https://example.com/privacy.html</loc>
+  </url>
+
+  <url>
+    <loc>https://example.com/register.html</loc>
+  </url>
+
+</urlset>
+ملاحظات مهمة:
+- غيّر https://example.com/ إلى الدومين الحقيقي بتاعك.
+- خليه محفوظ باسم sitemap.xml في جذر الموقع.

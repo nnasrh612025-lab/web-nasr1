@@ -1,0 +1,8 @@
+txt
+User-agent: *
+Disallow: /excel/
+Disallow: /admin/
+Allow: /
+
+Sitemap: https://example.com/sitemap.xml
+
