@@ -1,0 +1,1071 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الإحصائيات والتقارير | تخصص السيارات - الدلنجات الصناعية</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+	<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2839721033235125"
+     crossorigin="anonymous"></script>
+    <style>
+        :root {
+            --primary-color: #1a1a2e;
+            --secondary-color: #16213e;
+            --accent-color: #ff7b00;
+            --text-color: #ff7b00;
+            --background-gradient: linear-gradient(135deg, #0f0f0f 0%, #1a1a2e 50%, #16213e 100%);
+            --card-bg: rgba(255, 255, 255, 0.05);
+            --green: #28a745;
+            --blue: #007bff;
+            --purple: #6f42c1;
+            --red: #dc3545;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: var(--background-gradient);
+            color: var(--text-color);
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+        
+        /* تأثيرات الخلفية */
+        .bg-particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+        
+        .particle {
+            position: absolute;
+            background: rgba(255, 123, 0, 0.3);
+            border-radius: 50%;
+            animation: float 15s infinite linear;
+        }
+        
+        @keyframes float {
+            0% {
+                transform: translateY(0) translateX(0) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-1000px) translateX(500px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        
+        /* شاشة التحميل */
+        .page-loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--primary-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+        }
+        
+        .loader-content {
+            text-align: center;
+        }
+        
+        .loader-logo {
+            font-size: 60px;
+            color: var(--accent-color);
+            margin-bottom: 20px;
+        }
+        
+        .loader-text {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: var(--text-color);
+        }
+        
+        .loader-bar {
+            width: 200px;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 2px;
+            overflow: hidden;
+            margin: 0 auto;
+        }
+        
+        .loader-progress {
+            height: 100%;
+            background: var(--accent-color);
+            width: 0%;
+            animation: loading 2s ease-in-out forwards;
+        }
+        
+        @keyframes loading {
+            0% { width: 0%; }
+            100% { width: 100%; }
+        }
+        
+        /* الماركيه العلوي */
+        .marquee-section {
+            background-color: var(--accent-color);
+            padding: 10px 0;
+            overflow: hidden;
+        }
+        
+        .marquee {
+            color: #000;
+            font-weight: bold;
+            font-size: 18px;
+            white-space: nowrap;
+            animation: marquee 15s linear infinite;
+        }
+        
+        @keyframes marquee {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
+        }
+        
+        /* الرأس والقائمة */
+        .header {
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 15px 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo h1 {
+            font-size: 24px;
+            margin-right: 10px;
+            color: var(--accent-color);
+        }
+        
+        .logo span {
+            font-size: 16px;
+            color: var(--text-color);
+        }
+        
+        .nav-menu {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-menu li {
+            margin: 0 15px;
+            position: relative;
+        }
+        
+        .nav-menu li:not(:last-child)::after {
+            content: "|";
+            color: var(--accent-color);
+            position: absolute;
+            left: -18px;
+            top: 0;
+        }
+        
+        .nav-menu a {
+            color: var(--text-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            padding: 5px 0;
+        }
+        
+        .nav-menu a:hover {
+            color: var(--accent-color);
+        }
+        
+        .home-btn {
+            background-color: var(--accent-color);
+            color: #000;
+            padding: 8px 15px;
+            border-radius: 4px;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+        
+        .home-btn:hover {
+            background-color: #ff9a3d;
+            transform: translateY(-2px);
+        }
+        
+        /* محتوى الصفحة */
+        .page-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 30px 20px;
+        }
+        
+        .page-title {
+            text-align: center;
+            color: var(--accent-color);
+            font-size: 36px;
+            margin-bottom: 10px;
+        }
+        
+        .page-subtitle {
+            text-align: center;
+            color: var(--text-color);
+            margin-bottom: 40px;
+            font-size: 18px;
+            opacity: 0.9;
+        }
+        
+        /* أزرار التحكم */
+        .controls {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+        
+        .control-btn {
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--text-color);
+            border: 2px solid var(--accent-color);
+            padding: 10px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+        
+        .control-btn:hover,
+        .control-btn.active {
+            background: var(--accent-color);
+            color: #000;
+            transform: translateY(-2px);
+        }
+        
+        /* بطاقات الإحصائيات */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+        
+        .stat-card {
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--accent-color);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--accent-color);
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+        }
+        
+        .stat-card.students::before { background: var(--green); }
+        .stat-card.activities::before { background: var(--blue); }
+        .stat-card.lessons::before { background: var(--purple); }
+        .stat-card.performance::before { background: var(--accent-color); }
+        
+        .stat-icon {
+            font-size: 40px;
+            margin-bottom: 15px;
+        }
+        
+        .stat-card.students .stat-icon { color: var(--green); }
+        .stat-card.activities .stat-icon { color: var(--blue); }
+        .stat-card.lessons .stat-icon { color: var(--purple); }
+        .stat-card.performance .stat-icon { color: var(--accent-color); }
+        
+        .stat-value {
+            font-size: 32px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: white;
+        }
+        
+        .stat-label {
+            color: var(--text-color);
+            opacity: 0.9;
+            font-size: 16px;
+        }
+        
+        .stat-change {
+            margin-top: 10px;
+            font-size: 14px;
+            padding: 4px 12px;
+            border-radius: 20px;
+            display: inline-block;
+        }
+        
+        .change-positive {
+            background: rgba(40, 167, 69, 0.2);
+            color: var(--green);
+        }
+        
+        .change-negative {
+            background: rgba(220, 53, 69, 0.2);
+            color: #dc3545;
+        }
+        
+        /* المخططات */
+        .charts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .chart-container {
+            background: var(--card-bg);
+            padding: 25px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--accent-color);
+        }
+        
+        .chart-title {
+            color: var(--accent-color);
+            margin-bottom: 20px;
+            text-align: center;
+            font-size: 20px;
+        }
+        
+        .chart-wrapper {
+            position: relative;
+            height: 300px;
+        }
+        
+        /* جدول الإحصائيات */
+        .stats-table {
+            background: var(--card-bg);
+            border-radius: 15px;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--accent-color);
+            margin-bottom: 40px;
+        }
+        
+        .table-header {
+            background: rgba(255, 123, 0, 0.2);
+            padding: 20px;
+            color: var(--accent-color);
+            font-size: 20px;
+            font-weight: bold;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        th, td {
+            padding: 15px 20px;
+            text-align: right;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            color: white;
+        }
+        
+        th {
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--accent-color);
+            font-weight: 600;
+        }
+        
+        tr:hover {
+            background: rgba(255, 255, 255, 0.05);
+        }
+        
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: var(--accent-color);
+            border-radius: 4px;
+        }
+        
+        /* الأقسام الشهرية */
+        .monthly-sections {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+        
+        .section-card {
+            background: var(--card-bg);
+            padding: 25px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--accent-color);
+        }
+        
+        .section-title {
+            color: var(--accent-color);
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+        
+        /* زر التحديث */
+        .update-btn {
+            background: var(--accent-color);
+            color: #000;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin: 0 auto 30px;
+        }
+        
+        .update-btn:hover {
+            background: #ff9a3d;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(255, 123, 0, 0.4);
+        }
+        
+        /* حقوق النشر */
+        .copyright {
+            text-align: center;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.3);
+            margin-top: 50px;
+        }
+        
+        .copyright p {
+            margin: 5px 0;
+            font-size: 16px;
+        }
+        
+        /* تصميم متجاوب */
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+            }
+            
+            .nav-menu {
+                margin-top: 15px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .nav-menu li {
+                margin: 5px 10px;
+            }
+            
+            .charts-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .chart-container {
+                padding: 15px;
+            }
+            
+            .stats-grid {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .page-title {
+                font-size: 28px;
+            }
+            
+            .stat-card {
+                padding: 20px;
+            }
+            
+            .stat-value {
+                font-size: 28px;
+            }
+            
+            .monthly-sections {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- تأثيرات الخلفية -->
+    <div class="bg-particles" id="particles"></div>
+
+    <!-- شاشة التحميل -->
+    <div class="page-loader" id="pageLoader">
+        <div class="loader-content">
+            <div class="loader-logo">
+                <i class="fas fa-chart-line"></i>
+            </div>
+            <div class="loader-text">جاري تحميل الإحصائيات</div>
+            <div class="loader-bar">
+                <div class="loader-progress"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- الماركيه العلوي -->
+    <div class="marquee-section">
+        <div class="marquee">
+            📊 لوحة الإحصائيات والتقارير 🎯 تخصص السيارات - الدلنجات الصناعية 📈 متابعة أداء الطلاب والأنشطة 📊
+        </div>
+    </div>
+
+    <!-- الرأس والقائمة -->
+    <header class="header">
+        <div class="nav-container">
+            <div class="logo">
+                <h1>تخصص السيارات <span>| الدلنجات الصناعية</span></h1>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html">الرئيسية</a></li>
+                <li><a href="classmates.html">زملائي</a></li>
+                <li><a href="first-grade.html">صف اول</a></li>
+                <li><a href="second-grade.html">صف ثان</a></li>
+                <li><a href="third-grade.html">صف ثالث</a></li>
+                <li><a href="books.html">الكتب</a></li>
+                <li><a href="tasks.html">المهام</a></li>
+				<li><a href="register.html" class="home-btn">التسجيل</a></li>
+                <li><a href="earnings.html" class="home-btn">الإحصائيات</a></li>
+                <li><a href="contact.html">اتصل بنا</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- محتوى الصفحة -->
+    <div class="page-content">
+        <h1 class="page-title">لوحة الإحصائيات والتقارير</h1>
+        <p class="page-subtitle">متابعة شاملة لأداء الطلاب والأنشطة التعليمية في تخصص السيارات</p>
+        
+        <!-- أزرار التحكم -->
+        <div class="controls">
+            <button class="control-btn active" onclick="filterData('daily')">يومي</button>
+            <button class="control-btn" onclick="filterData('weekly')">أسبوعي</button>
+            <button class="control-btn" onclick="filterData('monthly')">شهري</button>
+            <button class="control-btn" onclick="filterData('yearly')">سنوي</button>
+        </div>
+        
+        <!-- بطاقات الإحصائيات -->
+        <div class="stats-grid">
+            <div class="stat-card students">
+                <div class="stat-icon">
+                    <i class="fas fa-users"></i>
+                </div>
+                <div class="stat-value">١٥٦</div>
+                <div class="stat-label">إجمالي الطلاب</div>
+                <div class="stat-change change-positive">
+                    <i class="fas fa-arrow-up"></i> ١٢٪ زيادة
+                </div>
+            </div>
+            
+            <div class="stat-card activities">
+                <div class="stat-icon">
+                    <i class="fas fa-tasks"></i>
+                </div>
+                <div class="stat-value">٤٨</div>
+                <div class="stat-label">نشاط تعليمي</div>
+                <div class="stat-change change-positive">
+                    <i class="fas fa-arrow-up"></i> ٨٪ زيادة
+                </div>
+            </div>
+            
+            <div class="stat-card lessons">
+                <div class="stat-icon">
+                    <i class="fas fa-book"></i>
+                </div>
+                <div class="stat-value">١٢٤</div>
+                <div class="stat-label">درس مكتمل</div>
+                <div class="stat-change change-positive">
+                    <i class="fas fa-arrow-up"></i> ١٥٪ زيادة
+                </div>
+            </div>
+            
+            <div class="stat-card performance">
+                <div class="stat-icon">
+                    <i class="fas fa-chart-bar"></i>
+                </div>
+                <div class="stat-value">٨٧٪</div>
+                <div class="stat-label">معدل النجاح</div>
+                <div class="stat-change change-positive">
+                    <i class="fas fa-arrow-up"></i> ٥٪ زيادة
+                </div>
+            </div>
+        </div>
+        
+        <!-- زر التحديث -->
+        <button class="update-btn" onclick="updateData()">
+            <i class="fas fa-sync-alt"></i> تحديث البيانات
+        </button>
+        
+        <!-- المخططات -->
+        <div class="charts-grid">
+            <div class="chart-container">
+                <h3 class="chart-title">توزيع الطلاب على الصفوف</h3>
+                <div class="chart-wrapper">
+                    <canvas id="studentsChart"></canvas>
+                </div>
+            </div>
+            
+            <div class="chart-container">
+                <h3 class="chart-title">معدلات النجاح</h3>
+                <div class="chart-wrapper">
+                    <canvas id="performanceChart"></canvas>
+                </div>
+            </div>
+            
+            <div class="chart-container">
+                <h3 class="chart-title">الأنشطة التعليمية</h3>
+                <div class="chart-wrapper">
+                    <canvas id="activitiesChart"></canvas>
+                </div>
+            </div>
+            
+            <div class="chart-container">
+                <h3 class="chart-title">تقدم الطلاب</h3>
+                <div class="chart-wrapper">
+                    <canvas id="progressChart"></canvas>
+                </div>
+            </div>
+        </div>
+        
+        <!-- جدول الإحصائيات -->
+        <div class="stats-table">
+            <div class="table-header">
+                <i class="fas fa-table"></i> تفصيل الإحصائيات الشهرية
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>الصف</th>
+                        <th>عدد الطلاب</th>
+                        <th>الدروس المكتملة</th>
+                        <th>معدل النجاح</th>
+                        <th>التقدم</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>الصف الأول</td>
+                        <td>٥٨</td>
+                        <td>٤٢</td>
+                        <td>٨٥٪</td>
+                        <td>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 85%"></div>
+                            </div>
+                            <span class="change-positive">٨٥٪</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>الصف الثاني</td>
+                        <td>٥٢</td>
+                        <td>٤٥</td>
+                        <td>٨٨٪</td>
+                        <td>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 88%"></div>
+                            </div>
+                            <span class="change-positive">٨٨٪</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>الصف الثالث</td>
+                        <td>٤٦</td>
+                        <td>٣٧</td>
+                        <td>٩٠٪</td>
+                        <td>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 90%"></div>
+                            </div>
+                            <span class="change-positive">٩٠٪</span>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <!-- الأقسام الشهرية -->
+        <div class="monthly-sections">
+            <div class="section-card">
+                <h3 class="section-title">أكثر الأنشطة تفاعلاً</h3>
+                <ul style="list-style: none; padding: 0;">
+                    <li style="padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.1);">
+                        <i class="fas fa-car" style="color: var(--green); margin-left: 10px;"></i>
+                        صيانة المحركات
+                        <span style="float: left; color: var(--accent-color);">٩٥٪</span>
+                    </li>
+                    <li style="padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.1);">
+                        <i class="fas fa-tools" style="color: var(--blue); margin-left: 10px;"></i>
+                        الكهرباء والإلكترونيات
+                        <span style="float: left; color: var(--accent-color);">٨٨٪</span>
+                    </li>
+                    <li style="padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.1);">
+                        <i class="fas fa-cogs" style="color: var(--purple); margin-left: 10px;"></i>
+                        أنظمة الفرامل
+                        <span style="float: left; color: var(--accent-color);">٨٢٪</span>
+                    </li>
+                    <li style="padding: 8px 0;">
+                        <i class="fas fa-oil-can" style="color: var(--accent-color); margin-left: 10px;"></i>
+                        أنظمة التبريد
+                        <span style="float: left; color: var(--accent-color);">٧٨٪</span>
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="section-card">
+                <h3 class="section-title">الأهداف الشهرية</h3>
+                <div style="margin-bottom: 15px;">
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                        <span>إكمال الدروس</span>
+                        <span>٩٢٪</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 92%; background: var(--green);"></div>
+                    </div>
+                </div>
+                <div style="margin-bottom: 15px;">
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                        <span>مشاركة الطلاب</span>
+                        <span>٨٥٪</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 85%; background: var(--blue);"></div>
+                    </div>
+                </div>
+                <div style="margin-bottom: 15px;">
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                        <span>التقييمات</span>
+                        <span>٧٨٪</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 78%; background: var(--purple);"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- حقوق النشر -->
+    <footer class="footer">
+        <div class="copyright">
+            <p>جميع الحقوق محفوظة لتخصص السيارات - مدرسة الدلنجات الصناعية بنين @ 2025</p>
+            <p>تم التصميم والبرمجة بواسطة <span style="color: var(--accent-color); font-weight: bold;">م/ نصر علوان - هاتف: 01149923916</span></p>
+        </div>
+    </footer>
+
+    <script>
+        // إنشاء تأثيرات الجسيمات في الخلفية
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            const particleCount = 25;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                
+                const size = Math.random() * 15 + 5;
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                particle.style.left = `${Math.random() * 100}%`;
+                particle.style.top = `${Math.random() * 100}%`;
+                particle.style.animationDelay = `${Math.random() * 15}s`;
+                
+                particlesContainer.appendChild(particle);
+            }
+        }
+        
+        // إخفاء شاشة التحميل بعد تحميل الصفحة
+        window.addEventListener('load', function() {
+            setTimeout(function() {
+                document.getElementById('pageLoader').style.display = 'none';
+                initializeCharts();
+            }, 2000);
+        });
+        
+        // تهيئة المخططات
+        function initializeCharts() {
+            // مخطط توزيع الطلاب
+            const studentsCtx = document.getElementById('studentsChart').getContext('2d');
+            new Chart(studentsCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['الصف الأول', 'الصف الثاني', 'الصف الثالث'],
+                    datasets: [{
+                        data: [58, 52, 46],
+                        backgroundColor: [
+                            'rgba(255, 123, 0, 0.8)',
+                            'rgba(0, 123, 255, 0.8)',
+                            'rgba(40, 167, 69, 0.8)'
+                        ],
+                        borderColor: [
+                            '#ff7b00',
+                            '#007bff',
+                            '#28a745'
+                        ],
+                        borderWidth: 2
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                            labels: {
+                                color: '#fff',
+                                padding: 20
+                            }
+                        }
+                    }
+                }
+            });
+            
+            // مخطط معدلات النجاح
+            const performanceCtx = document.getElementById('performanceChart').getContext('2d');
+            new Chart(performanceCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['يناير', 'فبراير', 'مارس', 'أبريل', 'مايو'],
+                    datasets: [{
+                        label: 'معدل النجاح %',
+                        data: [82, 85, 87, 86, 87],
+                        backgroundColor: 'rgba(255, 123, 0, 0.8)',
+                        borderColor: '#ff7b00',
+                        borderWidth: 2
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            labels: {
+                                color: '#fff'
+                            }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 100,
+                            grid: {
+                                color: 'rgba(255, 255, 255, 0.1)'
+                            },
+                            ticks: {
+                                color: '#fff'
+                            }
+                        },
+                        x: {
+                            grid: {
+                                color: 'rgba(255, 255, 255, 0.1)'
+                            },
+                            ticks: {
+                                color: '#fff'
+                            }
+                        }
+                    }
+                }
+            });
+            
+            // مخطط الأنشطة التعليمية
+            const activitiesCtx = document.getElementById('activitiesChart').getContext('2d');
+            new Chart(activitiesCtx, {
+                type: 'polarArea',
+                data: {
+                    labels: ['المحركات', 'الكهرباء', 'الفرامل', 'التبريد', 'التعليق'],
+                    datasets: [{
+                        data: [35, 25, 20, 15, 5],
+                        backgroundColor: [
+                            'rgba(255, 123, 0, 0.7)',
+                            'rgba(0, 123, 255, 0.7)',
+                            'rgba(40, 167, 69, 0.7)',
+                            'rgba(111, 66, 193, 0.7)',
+                            'rgba(108, 117, 125, 0.7)'
+                        ]
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                            labels: {
+                                color: '#fff',
+                                padding: 15
+                            }
+                        }
+                    }
+                }
+            });
+            
+            // مخطط تقدم الطلاب
+            const progressCtx = document.getElementById('progressChart').getContext('2d');
+            new Chart(progressCtx, {
+                type: 'line',
+                data: {
+                    labels: ['الأسبوع 1', 'الأسبوع 2', 'الأسبوع 3', 'الأسبوع 4'],
+                    datasets: [{
+                        label: 'الصف الأول',
+                        data: [65, 70, 75, 85],
+                        borderColor: '#ff7b00',
+                        backgroundColor: 'rgba(255, 123, 0, 0.1)',
+                        borderWidth: 3,
+                        fill: true,
+                        tension: 0.4
+                    }, {
+                        label: 'الصف الثاني',
+                        data: [70, 75, 80, 88],
+                        borderColor: '#007bff',
+                        backgroundColor: 'rgba(0, 123, 255, 0.1)',
+                        borderWidth: 3,
+                        fill: true,
+                        tension: 0.4
+                    }, {
+                        label: 'الصف الثالث',
+                        data: [75, 80, 85, 90],
+                        borderColor: '#28a745',
+                        backgroundColor: 'rgba(40, 167, 69, 0.1)',
+                        borderWidth: 3,
+                        fill: true,
+                        tension: 0.4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            labels: {
+                                color: '#fff'
+                            }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            grid: {
+                                color: 'rgba(255, 255, 255, 0.1)'
+                            },
+                            ticks: {
+                                color: '#fff'
+                            }
+                        },
+                        x: {
+                            grid: {
+                                color: 'rgba(255, 255, 255, 0.1)'
+                            },
+                            ticks: {
+                                color: '#fff'
+                            }
+                        }
+                    }
+                }
+            });
+        }
+        
+        // تصفية البيانات
+        function filterData(period) {
+            const buttons = document.querySelectorAll('.control-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            // هنا يمكنك إضافة كود تصفية البيانات حسب الفترة
+            console.log('تصفية البيانات حسب:', period);
+        }
+        
+        // تحديث البيانات
+        function updateData() {
+            const btn = event.target;
+            const originalText = btn.innerHTML;
+            
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> جاري التحديث...';
+            btn.disabled = true;
+            
+            // محاكاة تحديث البيانات
+            setTimeout(() => {
+                btn.innerHTML = originalText;
+                btn.disabled = false;
+                
+                // إعادة تحميل المخططات
+                initializeCharts();
+                
+                // إشعار بالتحديث
+                alert('تم تحديث البيانات بنجاح!');
+            }, 2000);
+        }
+        
+        // تأثيرات التمرير
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, { threshold: 0.1 });
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            createParticles();
+            
+            const animatedElements = document.querySelectorAll('.stat-card, .chart-container, .stats-table, .section-card');
+            
+            animatedElements.forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(30px)';
+                el.style.transition = 'all 0.6s ease';
+                observer.observe(el);
+            });
+        });
+    </script>
+</body>
+</html>

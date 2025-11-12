@@ -1,20 +1,672 @@
-تمام، دي نسخة من كود `sitemap.xml` فيها صفحة التسجيل فقط (register):
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="sitemap" type="application/xml" href="sitemap.xml">
+    <title>تسجيل حساب جديد | تخصص السيارات - الدلنجات الصناعية</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+	<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2839721033235125"
+     crossorigin="anonymous"></script>
+    <style>
+        :root {
+            --primary-color: #1a1a2e;
+            --secondary-color: #16213e;
+            --accent-color: #ff7b00;
+            --text-color: #ff7b00;
+            --background-gradient: linear-gradient(135deg, #0f0f0f 0%, #1a1a2e 50%, #16213e 100%);
+            --card-bg: rgba(255, 255, 255, 0.05);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: var(--background-gradient);
+            color: var(--text-color);
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+        
+        /* تأثيرات الخلفية */
+        .bg-particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+        
+        .particle {
+            position: absolute;
+            background: rgba(255, 123, 0, 0.3);
+            border-radius: 50%;
+            animation: float 15s infinite linear;
+        }
+        
+        @keyframes float {
+            0% {
+                transform: translateY(0) translateX(0) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-1000px) translateX(500px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        
+        /* شاشة التحميل */
+        .page-loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--primary-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+        }
+        
+        .loader-content {
+            text-align: center;
+        }
+        
+        .loader-logo {
+            font-size: 60px;
+            color: var(--accent-color);
+            margin-bottom: 20px;
+        }
+        
+        .loader-text {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: var(--text-color);
+        }
+        
+        .loader-bar {
+            width: 200px;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 2px;
+            overflow: hidden;
+            margin: 0 auto;
+        }
+        
+        .loader-progress {
+            height: 100%;
+            background: var(--accent-color);
+            width: 0%;
+            animation: loading 2s ease-in-out forwards;
+        }
+        
+        @keyframes loading {
+            0% { width: 0%; }
+            100% { width: 100%; }
+        }
+        
+        /* الماركيه العلوي */
+        .marquee-section {
+            background-color: var(--accent-color);
+            padding: 10px 0;
+            overflow: hidden;
+        }
+        
+        .marquee {
+            color: #000;
+            font-weight: bold;
+            font-size: 18px;
+            white-space: nowrap;
+            animation: marquee 15s linear infinite;
+        }
+        
+        @keyframes marquee {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
+        }
+        
+        /* الرأس والقائمة */
+        .header {
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 15px 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo h1 {
+            font-size: 24px;
+            margin-right: 10px;
+            color: var(--accent-color);
+        }
+        
+        .logo span {
+            font-size: 16px;
+            color: var(--text-color);
+        }
+        
+        .nav-menu {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-menu li {
+            margin: 0 15px;
+            position: relative;
+        }
+        
+        .nav-menu li:not(:last-child)::after {
+            content: "|";
+            color: var(--accent-color);
+            position: absolute;
+            left: -18px;
+            top: 0;
+        }
+        
+        .nav-menu a {
+            color: var(--text-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            padding: 5px 0;
+        }
+        
+        .nav-menu a:hover {
+            color: var(--accent-color);
+        }
+        
+        .home-btn {
+            background-color: var(--accent-color);
+            color: #000;
+            padding: 8px 15px;
+            border-radius: 4px;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+        
+        .home-btn:hover {
+            background-color: #ff9a3d;
+            transform: translateY(-2px);
+        }
+        
+        /* قسم التسجيل */
+        .register-section {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 40px 20px;
+        }
+        
+        .register-container {
+            background: var(--card-bg);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+            width: 100%;
+            max-width: 500px;
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--accent-color);
+        }
+        
+        .register-title {
+            text-align: center;
+            margin-bottom: 30px;
+            color: var(--accent-color);
+            font-size: 32px;
+            position: relative;
+            padding-bottom: 15px;
+        }
+        
+        .register-title::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            right: 50%;
+            transform: translateX(50%);
+            width: 100px;
+            height: 3px;
+            background: var(--accent-color);
+            border-radius: 2px;
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+            position: relative;
+        }
+        
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--text-color);
+            font-weight: 500;
+        }
+        
+        .form-input {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+        
+        .form-input:focus {
+            outline: none;
+            border-color: var(--accent-color);
+            background: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 0 0 3px rgba(255, 123, 0, 0.3);
+        }
+        
+        .form-input::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+        }
+        
+        .password-toggle {
+            position: absolute;
+            left: 15px;
+            top: 45px;
+            background: none;
+            border: none;
+            color: var(--accent-color);
+            cursor: pointer;
+            font-size: 18px;
+        }
+        
+        .terms-group {
+            display: flex;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+        
+        .terms-checkbox {
+            margin-left: 10px;
+            width: 18px;
+            height: 18px;
+            accent-color: var(--accent-color);
+        }
+        
+        .terms-label {
+            color: var(--text-color);
+            font-size: 14px;
+        }
+        
+        .terms-label a {
+            color: var(--accent-color);
+            text-decoration: none;
+        }
+        
+        .terms-label a:hover {
+            text-decoration: underline;
+        }
+        
+        .submit-btn {
+            width: 100%;
+            padding: 15px;
+            background: var(--accent-color);
+            color: #000;
+            border: none;
+            border-radius: 10px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-bottom: 20px;
+        }
+        
+        .submit-btn:hover {
+            background: #ff9a3d;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(255, 123, 0, 0.4);
+        }
+        
+        .submit-btn:active {
+            transform: translateY(-1px);
+        }
+        
+        .login-link {
+            text-align: center;
+            color: var(--text-color);
+        }
+        
+        .login-link a {
+            color: var(--accent-color);
+            text-decoration: none;
+            font-weight: bold;
+        }
+        
+        .login-link a:hover {
+            text-decoration: underline;
+        }
+        
+        /* مزايا التسجيل */
+        .benefits {
+            margin-top: 30px;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .benefits-title {
+            color: var(--accent-color);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        
+        .benefits-list {
+            list-style: none;
+        }
+        
+        .benefits-list li {
+            padding: 8px 0;
+            color: var(--text-color);
+            display: flex;
+            align-items: center;
+        }
+        
+        .benefits-list li::before {
+            content: "✓";
+            color: var(--accent-color);
+            font-weight: bold;
+            margin-left: 10px;
+        }
+        
+        /* حقوق النشر */
+        .copyright {
+            text-align: center;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.3);
+            margin-top: auto;
+        }
+        
+        .copyright p {
+            margin: 5px 0;
+            font-size: 16px;
+        }
+        
+        /* تصميم متجاوب */
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+            }
+            
+            .nav-menu {
+                margin-top: 15px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .nav-menu li {
+                margin: 5px 10px;
+            }
+            
+            .register-container {
+                padding: 30px 20px;
+                margin: 20px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .register-title {
+                font-size: 28px;
+            }
+            
+            .form-input {
+                padding: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- شاشة التحميل -->
+    <div class="page-loader" id="pageLoader">
+        <div class="loader-content">
+            <div class="loader-logo">
+                <i class="fas fa-user-plus"></i>
+            </div>
+            <div class="loader-text">جاري تحميل صفحة التسجيل</div>
+            <div class="loader-bar">
+                <div class="loader-progress"></div>
+            </div>
+        </div>
+    </div>
 
-```xml
-<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    <!-- تأثيرات الخلفية -->
+    <div class="bg-particles" id="particles"></div>
 
-  <url>
-    <loc>https://example.com/register.html</loc>
-    <priority>0.8</priority>
-  </url>
+    <!-- الماركيه العلوي -->
+    <div class="marquee-section">
+        <div class="marquee">
+            🎯 تسجيل حساب جديد 🎯 تخصص السيارات - الدلنجات الصناعية 🎯 انضم إلى مجتمعنا التعليمي 🎯
+        </div>
+    </div>
 
-</urlset>
-```
+    <!-- الرأس والقائمة -->
+    <header class="header">
+        <div class="nav-container">
+            <div class="logo">
+                <h1>تخصص السيارات <span>| الدلنجات الصناعية</span></h1>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html">الرئيسية</a></li>
+                <li><a href="classmates.html">زملائي</a></li>
+                <li><a href="first-grade.html">صف اول</a></li>
+                <li><a href="second-grade.html">صف ثان</a></li>
+                <li><a href="third-grade.html">صف ثالث</a></li>
+                <li><a href="books.html">الكتب</a></li>
+                <li><a href="tasks.html">المهام</a></li>
+                <li><a href="register.html" class="home-btn">التسجيل</a></li>
+                <li><a href="contact.html">اتصل بنا</a></li>
+            </ul>
+        </div>
+    </header>
 
-*ملاحظات:*
-- عدّل `https://example.com/register.html` لرابط موقعك الحقيقي.
-- احفظه بامتداد `sitemap.xml`.
-- ارفعه في جذر موقعك (نفس مكان index.html).
+    <!-- قسم التسجيل -->
+    <section class="register-section">
+        <div class="register-container">
+            <h2 class="register-title">تسجيل حساب جديد</h2>
+            
+            <form id="registerForm">
+                <div class="form-group">
+                    <label class="form-label" for="fullName">الاسم بالكامل</label>
+                    <input type="text" id="fullName" class="form-input" placeholder="أدخل اسمك بالكامل" required>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label" for="email">البريد الإلكتروني</label>
+                    <input type="email" id="email" class="form-input" placeholder="example@email.com" required>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label" for="phone">رقم الهاتف</label>
+                    <input type="tel" id="phone" class="form-input" placeholder="01XXXXXXXXX" required>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label" for="grade">الصف الدراسي</label>
+                    <select id="grade" class="form-input" required>
+                        <option value="">اختر الصف الدراسي</option>
+                        <option value="first">الصف الأول</option>
+                        <option value="second">الصف الثاني</option>
+                        <option value="third">الصف الثالث</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label" for="password">كلمة المرور</label>
+                    <input type="password" id="password" class="form-input" placeholder="أدخل كلمة المرور" required>
+                    <button type="button" class="password-toggle" onclick="togglePassword('password')">
+                        <i class="fas fa-eye"></i>
+                    </button>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label" for="confirmPassword">تأكيد كلمة المرور</label>
+                    <input type="password" id="confirmPassword" class="form-input" placeholder="أعد إدخال كلمة المرور" required>
+                    <button type="button" class="password-toggle" onclick="togglePassword('confirmPassword')">
+                        <i class="fas fa-eye"></i>
+                    </button>
+                </div>
+                
+                <div class="terms-group">
+                    <input type="checkbox" id="terms" class="terms-checkbox" required>
+                    <label for="terms" class="terms-label">
+                        أوافق على <a href="privacy.html">شروط الاستخدام</a> و <a href="privacy.html">سياسة الخصوصية</a>
+                    </label>
+                </div>
+                
+                <button type="submit" class="submit-btn">
+                    <i class="fas fa-user-plus"></i> إنشاء الحساب
+                </button>
+                
+                <div class="login-link">
+                    لديك حساب بالفعل؟ <a href="login.html">سجل الدخول هنا</a>
+                </div>
+            </form>
+            
+            <div class="benefits">
+                <h3 class="benefits-title">مزايا التسجيل في الموقع</h3>
+                <ul class="benefits-list">
+                    <li>الوصول إلى جميع المواد التعليمية</li>
+                    <li>متابعة المهام والواجبات</li>
+                    <li>التواصل مع المعلمين والزملاء</li>
+                    <li>الحصول على إشعارات بالدروس الجديدة</li>
+                    <li>مشاركة في الأنشطة التعليمية</li>
+                </ul>
+            </div>
+        </div>
+    </section>
 
-لو عايز أضيف أكتر من صفحة بلغني، أو أساعدك ترفعه.
+    <!-- حقوق النشر -->
+    <footer class="footer">
+        <div class="copyright">
+            <p>جميع الحقوق محفوظة لتخصص السيارات - مدرسة الدلنجات الصناعية بنين @ 2025</p>
+            <p>تم التصميم والبرمجة بواسطة <span style="color: var(--accent-color); font-weight: bold;">م/ نصر علوان - هاتف: 01149923916</span></p>
+        </div>
+    </footer>
+
+    <script>
+        // إنشاء تأثيرات الجسيمات في الخلفية
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            const particleCount = 25;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                
+                const size = Math.random() * 15 + 5;
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                particle.style.left = `${Math.random() * 100}%`;
+                particle.style.top = `${Math.random() * 100}%`;
+                particle.style.animationDelay = `${Math.random() * 15}s`;
+                
+                particlesContainer.appendChild(particle);
+            }
+        }
+        
+        // إخفاء شاشة التحميل بعد تحميل الصفحة
+        window.addEventListener('load', function() {
+            setTimeout(function() {
+                document.getElementById('pageLoader').style.display = 'none';
+            }, 2000);
+        });
+        
+        // تبديل عرض كلمة المرور
+        function togglePassword(inputId) {
+            const input = document.getElementById(inputId);
+            const icon = input.nextElementSibling.querySelector('i');
+            
+            if (input.type === 'password') {
+                input.type = 'text';
+                icon.classList.remove('fa-eye');
+                icon.classList.add('fa-eye-slash');
+            } else {
+                input.type = 'password';
+                icon.classList.remove('fa-eye-slash');
+                icon.classList.add('fa-eye');
+            }
+        }
+        
+        // التحقق من صحة النموذج
+        document.getElementById('registerForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+            const terms = document.getElementById('terms').checked;
+            
+            if (password !== confirmPassword) {
+                alert('كلمة المرور وتأكيدها غير متطابقين!');
+                return;
+            }
+            
+            if (!terms) {
+                alert('يجب الموافقة على الشروط والأحكام!');
+                return;
+            }
+            
+            // هنا يمكنك إضافة كود إرسال البيانات للخادم
+            alert('تم إنشاء الحساب بنجاح! سيتم توجيهك لصفحة الرئيسية.');
+            window.location.href = 'index.html';
+        });
+        
+        // تأثيرات عند التمرير
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+        
+        // مراقبة عناصر الصفحة
+        document.addEventListener('DOMContentLoaded', function() {
+            createParticles();
+            
+            const animatedElements = document.querySelectorAll('.register-container, .benefits');
+            
+            animatedElements.forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(30px)';
+                el.style.transition = 'all 0.6s ease';
+                observer.observe(el);
+            });
+        });
+    </script>
+</body>
+</html>
