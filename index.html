@@ -229,18 +229,31 @@
         .marquee {
             display: inline-block;
             white-space: nowrap;
-            animation: marquee 20s linear infinite;
+            animation: marquee-rtl 20s linear infinite;
             font-size: 1.5rem;
             font-weight: bold;
             color: #fff;
         }
         
-        @keyframes marquee {
+        .marquee.ltr {
+            animation: marquee-ltr 20s linear infinite;
+        }
+        
+        @keyframes marquee-rtl {
             0% {
                 transform: translateX(100%);
             }
             100% {
                 transform: translateX(-100%);
+            }
+        }
+        
+        @keyframes marquee-ltr {
+            0% {
+                transform: translateX(-100%);
+            }
+            100% {
+                transform: translateX(100%);
             }
         }
         
@@ -251,6 +264,27 @@
             100% {
                 box-shadow: 0 0 25px rgba(255, 123, 0, 0.7);
             }
+        }
+        
+        .marquee-controls {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        
+        .marquee-btn {
+            background: var(--accent-color);
+            color: #000;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .marquee-btn:hover {
+            background: #ff9a3d;
         }
         
         /* التروس المتحركة */
@@ -813,11 +847,12 @@
             <a href="#" class="nav-link" data-page="third-grade">صف ثالث</a> |
             <a href="#" class="nav-link" data-page="books">الكتب</a>|
             <a href="#" class="nav-link" data-page="tasks">المهام</a>|	
-            <a href="#" class="nav-link" data-page="contact">التواصل</a>|
-            <a href="#" class="nav-link" data-page="about">من نحن</a>|
-			<a href="register.html" class="home-btn">التسجيل</a>|
-			<a href="earnings.html" class="home-btn">الإحصائيات</a>|
-            <a href="#" class="nav-link" data-page="privacy">سياسة الخصوصية</a>
+            <a href="#" class="nav-link" data-page="contact">التواصل</a> |
+            <a href="#" class="nav-link" data-page="about">من نحن</a> |
+			<a href="mueadaat-thaqila.html">المعدات الثقيلة</a> |
+			<a href="register.html" class="home-btn">التسجيل</a>  |
+			<a href="earnings.html" class="home-btn">الإحصائيات</a>  |
+            <a href="#" class="nav-link" data-page="privacy">سياسة الخصوصية</a>|
         
     </nav>
     
@@ -827,6 +862,10 @@
     <section id="home" class="page active">
         <div class="marquee-container">
             <div class="marquee">أهلاً ومرحباً بكم في موقعي تخصص السيارات بمدرسة الدلنجات الصناعية العسكرية بنين</div>
+            <div class="marquee-controls">
+                <button class="marquee-btn" onclick="toggleMarqueeDirection()">تبديل اتجاه الماركيه</button>
+                <button class="marquee-btn" onclick="pauseMarquee()">إيقاف/تشغيل</button>
+            </div>
         </div>
         
         <div class="gears-section">
@@ -859,6 +898,10 @@
         
         <div class="marquee-container">
             <div class="marquee">تعرف على زملائك في تخصص السيارات 🌟</div>
+            <div class="marquee-controls">
+                <button class="marquee-btn" onclick="toggleMarqueeDirection()">تبديل اتجاه الماركيه</button>
+                <button class="marquee-btn" onclick="pauseMarquee()">إيقاف/تشغيل</button>
+            </div>
         </div>
         
         <div class="coverflow-wrapper">
@@ -881,6 +924,10 @@
         
         <div class="marquee-container">
             <div class="marquee">أهلاً وسهلاً بك في موقعى فى صفحة الصف الأول بتخصص السيارات 🌟</div>
+            <div class="marquee-controls">
+                <button class="marquee-btn" onclick="toggleMarqueeDirection()">تبديل اتجاه الماركيه</button>
+                <button class="marquee-btn" onclick="pauseMarquee()">إيقاف/تشغيل</button>
+            </div>
         </div>
         
         <h2 class="section-title">عرض الصور</h2>
@@ -914,6 +961,10 @@
         
         <div class="marquee-container">
             <div class="marquee">مرحبًا بطلاب الصف الثاني - نتمنى لكم يومًا دراسيًا موفقًا</div>
+            <div class="marquee-controls">
+                <button class="marquee-btn" onclick="toggleMarqueeDirection()">تبديل اتجاه الماركيه</button>
+                <button class="marquee-btn" onclick="pauseMarquee()">إيقاف/تشغيل</button>
+            </div>
         </div>
         
         <h2 class="section-title">الصف الثاني - أنشطة ومحتوى دراسي</h2>
@@ -959,6 +1010,10 @@
         
         <div class="marquee-container">
             <div class="marquee">أهلاً بكم في صفحة الصف الثالث – نرجو لكم تجربة تعليمية ممتعة</div>
+            <div class="marquee-controls">
+                <button class="marquee-btn" onclick="toggleMarqueeDirection()">تبديل اتجاه الماركيه</button>
+                <button class="marquee-btn" onclick="pauseMarquee()">إيقاف/تشغيل</button>
+            </div>
         </div>
         
         <h2 class="section-title">الصف الثالث – الأنشطة والوسائط التعليمية</h2>
@@ -1020,6 +1075,10 @@
         
         <div class="marquee-container">
             <div class="marquee">اختر كتابًا أو امتحانًا لعرضه</div>
+            <div class="marquee-controls">
+                <button class="marquee-btn" onclick="toggleMarqueeDirection()">تبديل اتجاه الماركيه</button>
+                <button class="marquee-btn" onclick="pauseMarquee()">إيقاف/تشغيل</button>
+            </div>
         </div>
         
         <div class="pdf-section">
@@ -1044,6 +1103,10 @@
         
         <div class="marquee-container">
             <div class="marquee">أضف مهامك اليومية وتابع إنجازك</div>
+            <div class="marquee-controls">
+                <button class="marquee-btn" onclick="toggleMarqueeDirection()">تبديل اتجاه الماركيه</button>
+                <button class="marquee-btn" onclick="pauseMarquee()">إيقاف/تشغيل</button>
+            </div>
         </div>
         
         <div class="task-container">
@@ -1061,6 +1124,10 @@
         
         <div class="marquee-container">
             <div class="marquee">تواصل معنا عبر أي وسيلة من الوسائل التالية</div>
+            <div class="marquee-controls">
+                <button class="marquee-btn" onclick="toggleMarqueeDirection()">تبديل اتجاه الماركيه</button>
+                <button class="marquee-btn" onclick="pauseMarquee()">إيقاف/تشغيل</button>
+            </div>
         </div>
         
         <div class="social-icons">
@@ -1085,6 +1152,10 @@
         
         <div class="marquee-container">
             <div class="marquee">نحن فى تخصص السيارات بمدرسة الدلنجات الصناعية بنين نربى ونعلم ونهدف إلى بناء جيل متميز</div>
+            <div class="marquee-controls">
+                <button class="marquee-btn" onclick="toggleMarqueeDirection()">تبديل اتجاه الماركيه</button>
+                <button class="marquee-btn" onclick="pauseMarquee()">إيقاف/تشغيل</button>
+            </div>
         </div>
         
         <div class="about-content">
@@ -1107,6 +1178,10 @@
         
         <div class="marquee-container">
             <div class="marquee">جميع الحقوق محفوظة للمصمم م / نصر علوان</div>
+            <div class="marquee-controls">
+                <button class="marquee-btn" onclick="toggleMarqueeDirection()">تبديل اتجاه الماركيه</button>
+                <button class="marquee-btn" onclick="pauseMarquee()">إيقاف/تشغيل</button>
+            </div>
         </div>
         
         <div class="about-content">
@@ -1319,6 +1394,36 @@
                 
                 if (el.complete || el.readyState >= 3) {
                     el.dispatchEvent(new Event('load'));
+                }
+            });
+        }
+        
+        // التحكم في الماركيه
+        let isMarqueePaused = false;
+        let isMarqueeLTR = false;
+        
+        function toggleMarqueeDirection() {
+            const marquees = document.querySelectorAll('.marquee');
+            isMarqueeLTR = !isMarqueeLTR;
+            
+            marquees.forEach(marquee => {
+                if (isMarqueeLTR) {
+                    marquee.classList.add('ltr');
+                } else {
+                    marquee.classList.remove('ltr');
+                }
+            });
+        }
+        
+        function pauseMarquee() {
+            const marquees = document.querySelectorAll('.marquee');
+            isMarqueePaused = !isMarqueePaused;
+            
+            marquees.forEach(marquee => {
+                if (isMarqueePaused) {
+                    marquee.style.animationPlayState = 'paused';
+                } else {
+                    marquee.style.animationPlayState = 'running';
                 }
             });
         }
