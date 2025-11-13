@@ -1,0 +1,74 @@
+body {
+    font-family: 'Segoe UI', Tahoma,Calibri, Geneva, Verdana, sans-serif;
+    background: linear-gradient(to right, #fff0f5, #ffe4e1);
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: hsl(229, 96%, 44%);
+    color: white;
+    text-align: center;
+    padding: 20px 0;
+
+}
+
+nav {
+    text-align: center;
+    margin: 10px 0;
+}
+
+.back-btn {
+    text-decoration: none;
+    background-color: hsla(0, 89%, 4%, 0.11);
+    color: rgb(134, 12, 16);
+    padding: 10px 20px;
+    border-radius: 10px;
+}
+
+.back-btn:hover {
+    background-color: #C71585;
+}
+
+main {
+    padding: 20px;
+    text-align: center;
+}
+
+textarea {
+    width: 85%;
+    height: 100px;
+    padding: 10px;
+    font-size: 24px;
+    margin-bottom: 10px;
+    p, textarea, button {
+    font-weight: 600; /* نص عريض متوسط */
+}
+}
+
+select, button {
+    padding: 10px 15px;
+    margin: 5px;
+    font-size: 24px;
+    border-radius: 5px;
+    border: 1px solid #dad1d12f;
+}
+
+button {
+    background-color: #FF69B4;
+    color: white;
+    border: none;
+}
+
+button:hover {
+    background-color: #C71585;
+}
+
+#translatedText {
+    margin-top: 20px;
+    padding: 15px;
+    border: 1px solid #ccc;
+    min-height: 50px;
+    background-color: #fff0f5;
+}
