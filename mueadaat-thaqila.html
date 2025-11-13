@@ -1,0 +1,953 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>المعدات الثقيلة </title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #000000;
+            --secondary-color: #1a1a1a;
+            --accent-color: #FF8C00;
+            --text-color: #FFFFFF;
+            --background-gradient: linear-gradient(135deg, #000000 0%, #1a1a1a 50%, #333333 100%);
+            --card-bg: rgba(255, 255, 255, 0.1);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: var(--background-gradient);
+            color: var(--text-color);
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+        
+        /* تأثيرات الخلفية */
+        .bg-particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+        
+        .particle {
+            position: absolute;
+            background: rgba(255, 140, 0, 0.4);
+            border-radius: 50%;
+            animation: float 15s infinite linear;
+        }
+        
+        @keyframes float {
+            0% {
+                transform: translateY(0) translateX(0) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-1000px) translateX(500px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        
+        /* شاشة التحميل */
+        .page-loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--primary-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+        }
+        
+        .loader-content {
+            text-align: center;
+        }
+        
+        .loader-logo {
+            font-size: 60px;
+            color: var(--accent-color);
+            margin-bottom: 20px;
+            animation: bounce 2s infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        .loader-text {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: var(--text-color);
+        }
+        
+        .loader-bar {
+            width: 200px;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 2px;
+            overflow: hidden;
+            margin: 0 auto;
+        }
+        
+        .loader-progress {
+            height: 100%;
+            background: var(--accent-color);
+            width: 0%;
+            animation: loading 2s ease-in-out forwards;
+        }
+        
+        @keyframes loading {
+            0% { width: 0%; }
+            100% { width: 100%; }
+        }
+        
+        /* الماركيه العلوي */
+        .marquee-section {
+            background-color: var(--accent-color);
+            padding: 10px 0;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .marquee-container {
+            display: flex;
+            overflow: hidden;
+        }
+        
+        .marquee {
+            color: #000;
+            font-weight: bold;
+            font-size: 18px;
+            white-space: nowrap;
+            animation: marquee-rtl 15s linear infinite;
+            padding: 0 20px;
+        }
+        
+        .marquee.ltr {
+            animation: marquee-ltr 15s linear infinite;
+        }
+        
+        @keyframes marquee-rtl {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
+        }
+        
+        @keyframes marquee-ltr {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+        
+        .marquee-controls {
+            position: absolute;
+            top: 50%;
+            left: 10px;
+            transform: translateY(-50%);
+            display: flex;
+            gap: 5px;
+        }
+        
+        .marquee-btn {
+            background: rgba(0, 0, 0, 0.7);
+            color: var(--accent-color);
+            border: none;
+            padding: 5px 10px;
+            border-radius: 3px;
+            cursor: pointer;
+            font-size: 12px;
+            transition: all 0.3s ease;
+        }
+        
+        .marquee-btn:hover {
+            background: #000;
+            color: #fff;
+        }
+        
+        /* الرأس والقائمة */
+        .header {
+            background-color: rgba(0, 0, 0, 0.9);
+            padding: 15px 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            border-bottom: 2px solid var(--accent-color);
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo h1 {
+            font-size: 24px;
+            margin-right: 10px;
+            color: var(--accent-color);
+        }
+        
+        .logo span {
+            font-size: 16px;
+            color: var(--text-color);
+        }
+        
+        .nav-menu {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-menu li {
+            margin: 0 15px;
+            position: relative;
+        }
+        
+        .nav-menu li:not(:last-child)::after {
+            content: "|";
+            color: var(--accent-color);
+            position: absolute;
+            left: -18px;
+            top: 0;
+        }
+        
+        .nav-menu a {
+            color: var(--text-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            padding: 5px 0;
+        }
+        
+        .nav-menu a:hover {
+            color: var(--accent-color);
+        }
+        
+        .home-btn {
+            background-color: var(--accent-color);
+            color: #000;
+            padding: 8px 15px;
+            border-radius: 4px;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+        
+        .home-btn:hover {
+            background-color: #ff9a3d;
+            transform: translateY(-2px);
+        }
+        
+        /* محتوى الصفحة */
+        .page-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 30px 20px;
+        }
+        
+        .page-title {
+            text-align: center;
+            color: var(--accent-color);
+            font-size: 36px;
+            margin-bottom: 10px;
+            text-shadow: 0 0 10px rgba(255, 140, 0, 0.5);
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+        
+        @keyframes glow {
+            from { text-shadow: 0 0 10px rgba(255, 140, 0, 0.5); }
+            to { text-shadow: 0 0 20px rgba(255, 140, 0, 0.8); }
+        }
+        
+        .page-subtitle {
+            text-align: center;
+            color: var(--text-color);
+            margin-bottom: 40px;
+            font-size: 18px;
+            opacity: 0.9;
+        }
+        
+        /* فلاتر التصنيفات */
+        .categories-filter {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 40px;
+        }
+        
+        .filter-btn {
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--text-color);
+            border: 2px solid var(--accent-color);
+            padding: 12px 25px;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+        
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: var(--accent-color);
+            color: #000;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(255, 140, 0, 0.3);
+        }
+        
+        /* شبكة المحتوى */
+        .content-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+        
+        .content-card {
+            background: var(--card-bg);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            transition: all 0.4s ease;
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--accent-color);
+            position: relative;
+        }
+        
+        .content-card:hover {
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4);
+        }
+        
+        .content-badge {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: var(--accent-color);
+            color: #000;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+            z-index: 2;
+        }
+        
+        .content-image {
+            position: relative;
+            height: 250px;
+            overflow: hidden;
+        }
+        
+        .content-image img,
+        .content-image video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .content-card:hover .content-image img,
+        .content-card:hover .content-image video {
+            transform: scale(1.1);
+        }
+        
+        .content-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.8));
+            display: flex;
+            align-items: flex-end;
+            padding: 20px;
+        }
+        
+        .content-info {
+            padding: 25px;
+        }
+        
+        .content-title {
+            color: var(--accent-color);
+            font-size: 20px;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+        
+        .content-description {
+            color: var(--text-color);
+            margin-bottom: 15px;
+            line-height: 1.6;
+            opacity: 0.9;
+        }
+        
+        .content-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        
+        .action-btn {
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--text-color);
+            border: none;
+            padding: 8px 15px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 14px;
+            flex: 1;
+            text-align: center;
+            text-decoration: none;
+        }
+        
+        .action-btn:hover {
+            background: var(--accent-color);
+            color: #000;
+            transform: translateY(-2px);
+        }
+        
+        /* قسم PDF */
+        .pdf-section {
+            background: var(--card-bg);
+            padding: 40px;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--accent-color);
+            margin-bottom: 50px;
+            text-align: center;
+        }
+        
+        .pdf-title {
+            color: var(--accent-color);
+            font-size: 28px;
+            margin-bottom: 25px;
+        }
+        
+        .pdf-selector {
+            width: 100%;
+            max-width: 500px;
+            padding: 15px;
+            border: 2px solid var(--accent-color);
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--text-color);
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+        
+        .pdf-viewer-container {
+            margin-top: 30px;
+        }
+        
+        .pdf-viewer {
+            width: 100%;
+            height: 600px;
+            border: 2px solid var(--accent-color);
+            border-radius: 10px;
+            background: white;
+        }
+        
+        /* قسم الأنيميشن */
+        .animation-section {
+            background: var(--card-bg);
+            padding: 40px;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--accent-color);
+            margin-bottom: 50px;
+            text-align: center;
+        }
+        
+        .animation-title {
+            color: var(--accent-color);
+            font-size: 28px;
+            margin-bottom: 25px;
+        }
+        
+        .animation-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .animation-item {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 15px;
+            border: 1px solid var(--accent-color);
+            transition: all 0.3s ease;
+        }
+        
+        .animation-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+        }
+        
+        .animation-icon {
+            font-size: 50px;
+            color: var(--accent-color);
+            margin-bottom: 20px;
+            animation: spin 3s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .animation-text {
+            color: var(--text-color);
+            font-size: 18px;
+            margin-bottom: 15px;
+        }
+        
+        /* حقوق النشر */
+        .copyright {
+            text-align: center;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.3);
+            margin-top: 50px;
+            border-top: 1px solid var(--accent-color);
+        }
+        
+        .copyright p {
+            margin: 5px 0;
+            font-size: 16px;
+        }
+        
+        /* تصميم متجاوب */
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+            }
+            
+            .nav-menu {
+                margin-top: 15px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .nav-menu li {
+                margin: 5px 10px;
+            }
+            
+            .content-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .pdf-viewer {
+                height: 400px;
+            }
+            
+            .animation-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .marquee-controls {
+                position: static;
+                transform: none;
+                justify-content: center;
+                margin-top: 5px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .page-title {
+                font-size: 28px;
+            }
+            
+            .content-card {
+                margin: 0 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- تأثيرات الخلفية -->
+    <div class="bg-particles" id="particles"></div>
+
+    <!-- شاشة التحميل -->
+    <div class="page-loader" id="pageLoader">
+        <div class="loader-content">
+            <div class="loader-logo">
+                <i class="fas fa-truck-monster"></i>
+            </div>
+            <div class="loader-text">جاري تحميل قسم المعدات الثقيلة</div>
+            <div class="loader-bar">
+                <div class="loader-progress"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- الماركيه العلوي -->
+    <div class="marquee-section">
+        <div class="marquee-container">
+            <div class="marquee" id="marquee">
+               🚜 قسم المعدات الثقيلة 🏗️ لوادر 🚛 حفارات 🚜 بلدوزرات * صفحة خاصة بالمعدات الثقيلة تحت الانشاء لخدمة زملائى وطلابى الاعزاء بالتوفيق للجميع ان شاء الله 🎯
+            </div>
+        </div>
+        <div class="marquee-controls">
+            <button class="marquee-btn" onclick="toggleMarqueeDirection()">
+                <i class="fas fa-exchange-alt"></i> تبديل الاتجاه
+            </button>
+            <button class="marquee-btn" onclick="pauseMarquee()">
+                <i class="fas fa-pause"></i> إيقاف/تشغيل
+            </button>
+        </div>
+    </div>
+
+    <!-- الرأس والقائمة -->
+    <header class="header">
+        <div class="nav-container">
+            <div class="logo">
+                <h1>المعدات الثقيلة <span>| الدلنجات الصناعية</span></h1>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html">الرئيسية</a></li>
+                <li><a href="heavy-equipment.html" class="home-btn">المعدات الثقيلة</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- محتوى الصفحة -->
+    <div class="page-content">
+        <h1 class="page-title">قسم المعدات الثقيلة</h1>
+        <p class="page-subtitle">تعرف على أحدث المعدات الثقيلة وتقنيات التشغيل والصيانة</p>
+        
+        <!-- فلاتر التصنيفات -->
+        <div class="categories-filter">
+            <button class="filter-btn active" onclick="filterContent('all')">جميع المحتويات</button>
+            <button class="filter-btn" onclick="filterContent('images')">الصور</button>
+            <button class="filter-btn" onclick="filterContent('videos')">الفيديوهات</button>
+            <button class="filter-btn" onclick="filterContent('animation')">الأنيميشن</button>
+        </div>
+
+        <!-- شبكة المحتوى -->
+        <div class="content-grid" id="contentGrid">
+            <!-- صورة 1 -->
+            <div class="content-card" data-category="images">
+                <div class="content-badge">صورة</div>
+                <div class="content-image">
+                    <img src="nasrmd1.jpg" alt="لودر كبير" onerror="this.src='https://via.placeholder.com/400x250/000000/FF8C00?text=لودر+كبير'">
+                    <div class="content-overlay"></div>
+                </div>
+                <div class="content-info">
+                    <h3 class="content-title">لودر كبير - Cat 950</h3>
+                    <p class="content-description">لودر كاتربيلر 950 بأحدث المواصفات والتقنيات في مجال الحفر والتحميل</p>
+                    <div class="content-actions">
+                        <button class="action-btn" onclick="viewImage('nasrmd1.jpg')">
+                            <i class="fas fa-expand"></i> عرض
+                        </button>
+                        <button class="action-btn" onclick="downloadFile('nasrmd1.jpg')">
+                            <i class="fas fa-download"></i> تحميل
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- فيديو 1 -->
+            <div class="content-card" data-category="videos">
+                <div class="content-badge">فيديو</div>
+                <div class="content-image">
+                    <video muted>
+                        <source src="معدات ثقيلة 1.mp4" type="video/mp4">
+                        متصفحك لا يدعم تشغيل الفيديو
+                    </video>
+                    <div class="content-overlay"></div>
+                </div>
+                <div class="content-info">
+                    <h3 class="content-title">تشغيل اللودر</h3>
+                    <p class="content-description">فيديو تعليمي يوضح كيفية تشغيل اللودر خطوة بخطوة</p>
+                    <div class="content-actions">
+                        <button class="action-btn" onclick="playVideo('معدات ثقيلة 1.mp4')">
+                            <i class="fas fa-play"></i> تشغيل
+                        </button>
+                        <button class="action-btn" onclick="downloadFile('معدات ثقيلة 1.mp4')">
+                            <i class="fas fa-download"></i> تحميل
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- صورة 2 -->
+            <div class="content-card" data-category="images">
+                <div class="content-badge">صورة</div>
+                <div class="content-image">
+                    <img src="nasrmd2.jpg" alt="حفارة هيدروليكية" onerror="this.src='https://via.placeholder.com/400x250/1a1a1a/FFFFFF?text=حفارة+هيدروليكية'">
+                    <div class="content-overlay"></div>
+                </div>
+                <div class="content-info">
+                    <h3 class="content-title">حفارة هيدروليكية</h3>
+                    <p class="content-description">حفارة متطورة بنظام هيدروليكي متكامل لأعمال الحفر العميق</p>
+                    <div class="content-actions">
+                        <button class="action-btn" onclick="viewImage('nasrmd2.jpg')">
+                            <i class="fas fa-expand"></i> عرض
+                        </button>
+                        <button class="action-btn" onclick="downloadFile('nasrmd2.jpg')">
+                            <i class="fas fa-download"></i> تحميل
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- فيديو 2 -->
+            <div class="content-card" data-category="videos">
+                <div class="content-badge">فيديو</div>
+                <div class="content-image">
+                    <video muted>
+                        <source src="معدات ثقيلة 2.mp4" type="video/mp4">
+                        متصفحك لا يدعم تشغيل الفيديو
+                    </video>
+                    <div class="content-overlay"></div>
+                </div>
+                <div class="content-info">
+                    <h3 class="content-title">صيانة الحفارات</h3>
+                    <p class="content-description">فيديو يشرح عمليات الصيانة الدورية للحفارات الهيدروليكية</p>
+                    <div class="content-actions">
+                        <button class="action-btn" onclick="playVideo('معدات ثقيلة 2.mp4')">
+                            <i class="fas fa-play"></i> تشغيل
+                        </button>
+                        <button class="action-btn" onclick="downloadFile('معدات ثقيلة 2.mp4')">
+                            <i class="fas fa-download"></i> تحميل
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- قسم PDF -->
+        <div class="pdf-section">
+            <h2 class="pdf-title">الكتب والمراجع</h2>
+            <select class="pdf-selector" id="pdfSelector" onchange="loadPDF()">
+                <option value="">اختر ملف PDF</option>
+                <option value="md1.pdf">دليل تشغيل المعدات الثقيلة - الجزء 1</option>
+                <option value="md2.pdf">صيانة الأنظمة الهيدروليكية</option>
+                <option value="md3.pdf">أنظمة التحكم الإلكترونية</option>
+                <option value="md4.pdf">دليل السلامة في مواقع العمل</option>
+                <option value="md5.pdf">الفحص الدوري للمعدات</option>
+            </select>
+            
+            <div class="pdf-viewer-container">
+                <iframe id="pdfViewer" class="pdf-viewer" src="" style="display: none;"></iframe>
+                <div id="pdfPlaceholder" style="color: var(--text-color); font-size: 18px;">
+                    <i class="fas fa-file-pdf" style="font-size: 50px; margin-bottom: 20px; color: var(--accent-color);"></i>
+                    <p>اختر ملف PDF من القائمة أعلاه لعرضه</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- قسم الأنيميشن -->
+        <div class="animation-section">
+            <h2 class="animation-title">الأنيميشن والموشن جرافيك</h2>
+            <div class="animation-container">
+                <div class="animation-item">
+                    <div class="animation-icon">
+                        <i class="fas fa-cogs"></i>
+                    </div>
+                    <h3 class="animation-text">أنظمة الهيدروليك</h3>
+                    <p>شرح متحرك لأنظمة الضخ الهيدروليكي</p>
+                </div>
+                
+                <div class="animation-item">
+                    <div class="animation-icon">
+                        <i class="fas fa-microchip"></i>
+                    </div>
+                    <h3 class="animation-text">التحكم الإلكتروني</h3>
+                    <p>أنظمة التحكم الذكية في المعدات</p>
+                </div>
+                
+                <div class="animation-item">
+                    <div class="animation-icon">
+                        <i class="fas fa-safety-vest"></i>
+                    </div>
+                    <h3 class="animation-text">إجراءات السلامة</h3>
+                    <p>موشن جرافيك لإجراءات السلامة</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- حقوق النشر -->
+    <footer class="footer">
+        <div class="copyright">
+            <p>جميع الحقوق محفوظة لمصمم الموقع م/ نصر علوان مصمم الموقع معلم خبير تخصص سيارات بمدرسة الدلنجات الصناعية بنين @ 2025</p>
+            <p>تم التصميم والبرمجة بواسطة <span style="color: var(--accent-color); font-weight: bold;">م/ نصر علوان - هاتف: 01149923916 ومستعد للرد علىاى استفسار</span></p>
+        </div>
+    </footer>
+
+    <script>
+        // إنشاء تأثيرات الجسيمات في الخلفية
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            const particleCount = 20;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                
+                const size = Math.random() * 20 + 5;
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                particle.style.left = `${Math.random() * 100}%`;
+                particle.style.top = `${Math.random() * 100}%`;
+                particle.style.animationDelay = `${Math.random() * 15}s`;
+                
+                particlesContainer.appendChild(particle);
+            }
+        }
+
+        // التحكم في الماركيه
+        let isMarqueePaused = false;
+        let isMarqueeLTR = false;
+        
+        function toggleMarqueeDirection() {
+            const marquee = document.getElementById('marquee');
+            isMarqueeLTR = !isMarqueeLTR;
+            
+            if (isMarqueeLTR) {
+                marquee.classList.add('ltr');
+            } else {
+                marquee.classList.remove('ltr');
+            }
+        }
+        
+        function pauseMarquee() {
+            const marquee = document.getElementById('marquee');
+            isMarqueePaused = !isMarqueePaused;
+            
+            if (isMarqueePaused) {
+                marquee.style.animationPlayState = 'paused';
+            } else {
+                marquee.style.animationPlayState = 'running';
+            }
+        }
+
+        // إخفاء شاشة التحميل بعد تحميل الصفحة
+        window.addEventListener('load', function() {
+            setTimeout(function() {
+                document.getElementById('pageLoader').style.display = 'none';
+            }, 2000);
+        });
+
+        // تصفية المحتوى
+        function filterContent(category) {
+            const contentItems = document.querySelectorAll('.content-card');
+            const filterBtns = document.querySelectorAll('.filter-btn');
+            
+            // تحديث الأزرار النشطة
+            filterBtns.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            contentItems.forEach(item => {
+                if (category === 'all' || item.getAttribute('data-category') === category) {
+                    item.style.display = 'block';
+                    setTimeout(() => {
+                        item.style.opacity = '1';
+                        item.style.transform = 'translateY(0)';
+                    }, 100);
+                } else {
+                    item.style.opacity = '0';
+                    item.style.transform = 'translateY(20px)';
+                    setTimeout(() => {
+                        item.style.display = 'none';
+                    }, 300);
+                }
+            });
+        }
+
+        // تحميل وعرض PDF
+        function loadPDF() {
+            const pdfSelector = document.getElementById('pdfSelector');
+            const pdfViewer = document.getElementById('pdfViewer');
+            const pdfPlaceholder = document.getElementById('pdfPlaceholder');
+            
+            const selectedFile = pdfSelector.value;
+            
+            if (selectedFile) {
+                pdfViewer.src = selectedFile;
+                pdfViewer.style.display = 'block';
+                pdfPlaceholder.style.display = 'none';
+            } else {
+                pdfViewer.style.display = 'none';
+                pdfPlaceholder.style.display = 'block';
+            }
+        }
+
+        // عرض الصورة
+        function viewImage(imageSrc) {
+            window.open(imageSrc, '_blank');
+        }
+
+        // تشغيل الفيديو
+        function playVideo(videoSrc) {
+            window.open(videoSrc, '_blank');
+        }
+
+        // تحميل الملف
+        function downloadFile(fileSrc) {
+            const link = document.createElement('a');
+            link.href = fileSrc;
+            link.download = fileSrc.split('/').pop();
+            link.click();
+        }
+
+        // تأثيرات عند التمرير
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.addEventListener('DOMContentLoaded', function() {
+            createParticles();
+            
+            const animatedElements = document.querySelectorAll('.content-card, .animation-item');
+            
+            animatedElements.forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(30px)';
+                el.style.transition = 'all 0.6s ease';
+                observer.observe(el);
+            });
+
+            // تفعيل الفيديوهات عند التمرير
+            const videos = document.querySelectorAll('video');
+            videos.forEach(video => {
+                video.addEventListener('mouseenter', function() {
+                    this.play();
+                });
+                video.addEventListener('mouseleave', function() {
+                    this.pause();
+                    this.currentTime = 0;
+                });
+            });
+        });
+    </script>
+</body>
+</html>
